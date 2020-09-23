@@ -125,3 +125,37 @@ let data : [String: String] = [
            }
         }
         ```
+5. How to use UIView
+
+ Create single view project, then add cocoatouch class of UIView by name DemoView
+-ViewController.swift
+
+```swift
+import UIKit
+class ViewController: UIViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let width: CGFloat = 240.0
+        let height: CGFloat = 160.0
+        let demoView = DemoView(frame: CGRect(x: self.view.frame.size.width/2 - width/2,
+                                              y: self.view.frame.size.height/2 - height/2,
+                                              width: width,
+                                              height: height))
+        self.view.addSubview(demoView)  
+    }
+}
+```
+-DemoView.swif
+```swift
+import UIKit
+class DemoView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .red
+    }    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+```
