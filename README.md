@@ -124,7 +124,7 @@ let data : [String: String] = [
               print(error)
            }
         }
-        ```
+```
 5. How to use UIView
 
  Create single view project, then add cocoatouch class of UIView by name DemoView
