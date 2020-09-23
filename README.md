@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 }
 
 ```
-2. Create a file into document directory of user domai mask (user folder)
+2. Create a file into document directory of user domain mask (user folder)
 
 ```swift
 let file = "file.txt" //this is the file. we will write to and read from it
@@ -89,6 +89,23 @@ let data : [String: String] = [
         if let profile = NSDictionary(contentsOfFile: path) as? [String: String] {
               print("profile = \(profile)")
         }
+        
+        // Using URL
+         let fileManager = FileManager.default
+        // Create file at document directory of user mask
+        let documentLocation = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0] as URL
+        let target = URL(fileURLWithPath: "profile.plist", relativeTo: documentLocation)
+        let isWritten = someData.write(to: target, atomically: true)
+         print("is the file created: \(isWritten)")
+        
+        /* Fetch plist with serialized data*/
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = URL(fileURLWithPath: "profile.plist", relativeTo: directory)
+            do{
+                 let data = try Data(contentsOf: fileURL)
+                 let fetchData = try PropertyListSerialization.propertyList(from: data,  format: nil) as? [String: String]
+                print(fetchData ?? "Not found")
+            }catch{ print(error) }
 ```
 4, Access file(Property List) from Main bundle
 ```swift
