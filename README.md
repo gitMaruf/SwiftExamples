@@ -159,3 +159,36 @@ class DemoView: UIView {
     }
 }
 ```
+### Map, Reduce and Filter
+```swift
+let now = 2020
+let years = [1989, 1992, 2003, 1970, 2014, 2001, 2015, 1990, 2000, 1999]
+let sum = years.filter({ $0 >= 2000 }).map({ now - $0 }).reduce(0, +)
+print(sum) // 67 //
+
+// map
+let celsius = [-5.0, 10.0, 21.0, 33.0, 50.0]
+let fahrenheit = celsius.map({ (value: Double) -> Double in
+    return value * (9/5) + 32
+})
+print(fahrenheit)
+//OR
+[-5.0, 10.0, 21.0, 33.0, 50.0].map { $0 * (9/5) + 32 }
+
+// filter
+let values = [11, 13, 14, 6, 17, 21, 33, 22]
+let even = values.filter ({ $0.isMultiple(of: 2) })
+print(even)
+```
+### Flat Map
+```swift
+let numbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+let result = numbers.flatMap({ $0 })
+print(result)
+```
+### Compact Map
+```swift
+let numbers = ["5", "42", "nine", "100", "Bob"]
+let result = numbers.compactMap({ Int($0) })
+print(result)
+```
